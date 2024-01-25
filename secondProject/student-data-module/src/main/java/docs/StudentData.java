@@ -1,3 +1,7 @@
+package docs;
+
+import java.net.MalformedURLException;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -8,10 +12,15 @@ import java.util.Scanner;
 public class StudentData {
 
     public static void generateStudentDataFile(String fileName, int numberOfStudents) {
+        FileWriter fileWriter = null;
+        if (numberOfStudents <= 0) {
+            System.err.println("Invalid number of students. File not created.");
+            return;
+        }
         try {
             // Create a FileWriter to write to the specified text file
             // FileWriter is a Java standard class for writing data to text files
-            FileWriter fileWriter = new FileWriter(fileName);
+            fileWriter = new FileWriter(fileName);
 
             // Random number generator
             Random random = new Random();
@@ -32,12 +41,19 @@ public class StudentData {
                         + yearOrDegree + "\n");
             }
 
-            // Close the FileWriter
-            fileWriter.close();
-
             System.out.println("Student data generated successfully in '" + fileName + "'");
         } catch (IOException e) {
+            System.err.println("Failed to write data to file: " + fileName);
             e.printStackTrace();
+        } finally {
+            try {
+                if (fileWriter != null) {
+                    fileWriter.close();
+                }
+            } catch (IOException e) {
+                System.err.println("Failed to close the file writer.");
+                e.printStackTrace();
+            }
         }
     }
 
@@ -46,8 +62,8 @@ public class StudentData {
             // Create a URL object to access the uinames.com API
             // URL is a Java class used to represent and manipulate Uniform Resource
             // Locators (URLs)
-            URL url = new URL("https://uinames.com/api/?amount=1"); // API to generate names
-                                                                    // (https://github.com/thm/uinames)
+            URL url = new URL("https://randomuser.me/api/?nat=us,gb,au"); // API to generate names
+            // (https://github.com/thm/uinames)
 
             // Open a connection to the URL
             // HttpURLConnection is a Java class for making HTTP requests and handling HTTP
@@ -72,9 +88,14 @@ public class StudentData {
             String lastName = json.split("\"last\":\"")[1].split("\"")[0];
 
             return new String[] { firstName, lastName };
-        } catch (IOException e) {
+        } catch (MalformedURLException e) {
+            System.err.println("URL format is incorrect.");
             e.printStackTrace();
-            return new String[] { "John", "Doe" }; // Default values in case of API failure
+            return new String[] { "John", "Doe" };
+        } catch (IOException e) {
+            System.err.println("Error occurred while calling the randomuser.me API.");
+            e.printStackTrace();
+            return new String[] { "John", "Doe" };
         }
     }
 
@@ -92,6 +113,23 @@ public class StudentData {
         // Example usage:
         // Generate student data and save it to a text file named "students.txt" with
         // 100 students
-        generateStudentDataFile("students.txt", 100);
+        // Get the directory of the running JAR file or the root project directory
+        String basePath = new File("").getAbsolutePath();
+
+        // Define the path to the target/generated-sources directory
+        String targetDirPath = basePath + File.separator + "target" + File.separator + "generated-sources";
+
+        // Ensure the directory exists
+        File targetDir = new File(targetDirPath);
+        if (!targetDir.exists()) {
+            targetDir.mkdirs(); // Create the directory if it does not exist
+        }
+
+        // Define the path to the students.txt file within the target/generated-sources
+        // directory
+        String filePath = targetDirPath + File.separator + "students.txt";
+
+        // Generate student data and save it to the specified file
+        generateStudentDataFile(filePath, 100);
     }
 }

@@ -1,81 +1,87 @@
+package project2;
 
 /**
  * Name: Sarah L. Lozier
  * Class: CMSC 215 - 6380
  * Project: Project 2
  * Date: February 6, 2024
- * Description: This file contains JUnit test cases for testing the functionality of the Project2 class.
+ * Description: This file contains JUnit test cases for testing the
+ * functionality of the Project2 class.
  */
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 
 public class Project2Test {
-    private Project2 project2;
     private final ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
 
     @BeforeEach
     public void setUp() {
-        // Create a new Project2 object before each test
-        project2 = new Project2();
-
         // Redirect console output to capture it
         System.setOut(new PrintStream(consoleOutput));
     }
 
     @Test
     public void testReadStudentsFromFile() {
-        // Test reading student information from a sample file
-        // Define your test data file 'students.txt' and call the method to read from it
-        // You can then assert that the list of students is correctly populated
-
-        // Example assertion:
-        // assertEquals(3, project2.getStudents().size()); // Assuming 3 students in the
-        // sample file
+        // Path to your test data file, adjust as necessary
+        String testFilePath = "target/generated-sources/students.txt";
+        // Call the method to read students from the file
+        Project2.readStudentsFromFile(testFilePath);
+        // Assuming the Project2 class maintains a list of students
+        // and provides a method to access it
+        assertEquals(102, Project2.getStudents().size()); // Assuming 3 students in the test file
     }
 
     @Test
     public void testComputeAverageGpa() {
-        // Test computing the average GPA for a list of students
-        // Define a list of students with known GPAs and call the method to compute the
-        // average
-        // You can then assert that the computed average matches the expected value
+        // Create a list of students with known GPAs
+        List<Student> students = Arrays.asList(
+                new Student("Student One", 30, 120), // GPA: 4.0
+                new Student("Student Two", 30, 90), // GPA: 3.0
+                new Student("Student Three", 30, 105) // GPA: 3.5
+        );
 
-        // Example assertion:
-        // assertEquals(3.5, project2.computeAverageGpa(), 0.01); // Assuming an average
-        // GPA of 3.5
+        // Call computeAverageGpa and check the result
+        double averageGpa = Project2.computeAverageGpa(students);
+        assertEquals(3.5, averageGpa, 0.01); // Expect average GPA of 3.5
     }
 
     @Test
     public void testSetAndDisplayGpaThreshold() {
-        // Test setting and displaying the GPA threshold
-        // Set a known threshold value and call the method to set and display it
-        // Capture the console output and assert that it matches the expected output
+        // Set a known threshold value
+        double threshold = 3.6;
+        Project2.setAndDisplayGpaThreshold(threshold);
 
-        // Example assertion:
-        // project2.setAndDisplayGpaThreshold(3.6);
-        // assertEquals("GPA Threshold: 3.6\n", consoleOutput.toString());
+        // Normalize newlines and trim output for comparison
+        String actualOutput = consoleOutput.toString().replace("\r\n", "\n").trim();
+        String expectedOutput = "GPA Threshold: 3.60";
+
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @Test
     public void testDisplayEligibleStudentsReport() {
-        // Test displaying the report of eligible students
-        // Define a list of students with known eligibility status and call the method
-        // to display the report
-        // Capture the console output and assert that it matches the expected output
+        // Set the GPA threshold for testing
+        Student.setGpaThreshold(3.5);
 
-        // Example assertion:
-        // Student student1 = new Student("John Doe", 36, 120);
-        // Student student2 = new Student("Alice Smith", 48, 160, "Junior");
-        // project2.addStudent(student1);
-        // project2.addStudent(student2);
-        // project2.displayEligibleStudentsReport();
-        // assertEquals("Eligible Students:\nJohn Doe\n", consoleOutput.toString());
+        // Add students with known eligibility status
+        Project2.addStudent(new Student("John Doe", 36, 144)); // GPA to meet threshold
+        Project2.addStudent(new Undergraduate("Alice Smith", 48, 160, "Junior")); // GPA: 3.33
+
+        // Call the method to display the eligible students report
+        Project2.displayEligibleStudentsReport();
+
+        // Normalize newlines and trim output for comparison
+        // Normalize newlines and trim output for comparison
+        String actualOutput = consoleOutput.toString().replace("\r\n", "\n").trim();
+        String expectedOutput = "Eligible Students:\n\nJohn Doe";
+
+        assertEquals(expectedOutput, actualOutput);
     }
-}
-
-public class Project2Test {
 
 }

@@ -1,10 +1,12 @@
+package project2;
 
 /**
  * Name: Sarah L. Lozier
  * Class: CMSC 215 - 6380
  * Project: Project 2
  * Date: February 6, 2024
- * Description: This file contains JUnit test cases for testing the functionality of the Undergraduate class.
+ * Description: This file contains JUnit test cases for testing the
+ * functionality of the Undergraduate class.
  */
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,17 +18,18 @@ public class GraduateTest {
     @BeforeEach
     public void setUp() {
         // Create a new Graduate object before each test
-        graduate = new Graduate("Mary Adams", 40, 140, "Master's");
+        graduate = new Graduate("Mary Adams", 40, 140, "Masters");
+        Student.setGpaThreshold(3.0); // Example: setting threshold to 3.0 for testing
     }
 
     @Test
-    public void testConstructor() {
+    public void testGraduateCreation() {
         // Test if the constructor correctly initializes the student's name, credit
         // hours, quality points, and degree sought
         assertEquals("Mary Adams", graduate.getName());
         assertEquals(40, graduate.getCreditHours());
         assertEquals(140, graduate.getQualityPoints());
-        assertEquals("Master's", graduate.getDegreeSought());
+        assertEquals("Masters", graduate.getDegreeSought());
     }
 
     @Test
@@ -38,6 +41,7 @@ public class GraduateTest {
     @Test
     public void testToString() {
         // Test the overridden toString method
-        assertEquals("Name: Mary Adams, GPA: 3.5, Degree Sought: Master's", graduate.toString());
+        assertEquals("Name: Mary Adams, GPA: 3.50, Degree Sought: Masters",
+                graduate.toString());
     }
 }

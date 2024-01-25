@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: project2.Project2Test
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.024 s -- in project2.Project2Test
+project2.Project2Test.testSetAndDisplayGpaThreshold -- Time elapsed: 0.002 s
+project2.Project2Test.testDisplayEligibleStudentsReport -- Time elapsed: 0.001 s
+project2.Project2Test.testReadStudentsFromFile -- Time elapsed: 0.016 s
+project2.Project2Test.testComputeAverageGpa -- Time elapsed: 0.001 s

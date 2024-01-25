@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: project2.StudentTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in project2.StudentTest
+project2.StudentTest.testEligibilityForHonorSociety -- Time elapsed: 0.001 s
+project2.StudentTest.testToString -- Time elapsed: 0.001 s
+project2.StudentTest.testStudentCreation -- Time elapsed: 0.001 s
+project2.StudentTest.testGpaCalculation -- Time elapsed: 0.001 s
+project2.StudentTest.testSetGpaThreshold -- Time elapsed: 0.001 s

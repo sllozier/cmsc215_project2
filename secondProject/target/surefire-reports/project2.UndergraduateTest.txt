@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: project2.UndergraduateTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in project2.UndergraduateTest
+project2.UndergraduateTest.testEligibilityForHonorSociety -- Time elapsed: 0.001 s
+project2.UndergraduateTest.testToString -- Time elapsed: 0.001 s
+project2.UndergraduateTest.testUndergraduateCreation -- Time elapsed: 0 s

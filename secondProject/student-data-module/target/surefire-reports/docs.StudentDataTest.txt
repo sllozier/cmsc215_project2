@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: docs.StudentDataTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.715 s -- in docs.StudentDataTest
+docs.StudentDataTest.testStudentDataFormat -- Time elapsed: 1.416 s
+docs.StudentDataTest.testStudentDataCreateFile -- Time elapsed: 0.988 s
+docs.StudentDataTest.testStudentDataWithInvalidNumberOfStudents -- Time elapsed: 0.002 s
+docs.StudentDataTest.testStudentDataNumberOfLines -- Time elapsed: 1.287 s

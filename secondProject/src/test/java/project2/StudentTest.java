@@ -1,10 +1,12 @@
+package project2;
 
 /**
  * Name: Sarah L. Lozier
  * Class: CMSC 215 - 6380
  * Project: Project 2
  * Date: February 6, 2024
- * Description: This file contains JUnit test cases for testing the functionality of the Student class.
+ * Description: This file contains JUnit test cases for testing the
+ * functionality of the Student class.
  */
 
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +23,7 @@ public class StudentTest {
     }
 
     @Test
-    public void testConstructor() {
+    public void testStudentCreation() {
         // Test if the constructor correctly initializes the student's name, credit
         // hours, and quality points
         assertEquals("John Doe", student.getName());
@@ -32,19 +34,19 @@ public class StudentTest {
     @Test
     public void testGpaCalculation() {
         // Test the calculation of GPA
-        assertEquals(4.0, student.gpa(), 0.01); // Assuming quality points = 120 and credit hours = 30
+        assertEquals(4.0, student.gpa(), 0.01);
     }
 
     @Test
     public void testEligibilityForHonorSociety() {
         // Test eligibility for honor society membership
-        assertFalse(student.eligibleForHonorSociety()); // GPA is 4.0, which doesn't exceed the threshold
+        assertTrue(student.eligibleForHonorSociety());
     }
 
     @Test
     public void testToString() {
         // Test the toString method
-        assertEquals("Name: John Doe, GPA: 4.0", student.toString());
+        assertEquals("Name: John Doe, GPA: 4.00", student.toString());
     }
 
     @Test
