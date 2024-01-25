@@ -1,7 +1,0 @@
--------------------------------------------------------------------------------
-Test set: project2.GraduateTest
--------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.044 s -- in project2.GraduateTest
-project2.GraduateTest.testEligibilityForHonorSociety -- Time elapsed: 0.021 s
-project2.GraduateTest.testToString -- Time elapsed: 0.003 s
-project2.GraduateTest.testGraduateCreation -- Time elapsed: 0.001 s
